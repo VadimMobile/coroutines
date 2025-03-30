@@ -139,7 +139,8 @@ fun main() { // Выполнять здесь
                 val posts = getPosts(client)
                     .map { post ->
                         async { // Нужно реализовать получение постов с авторами (обязательная задача)
-                            PostWithAuthor(post, getAuthor(client, post.id))
+                            val authorId = post.authorId
+                            PostWithAuthor(post, getAuthor(client, authorId))
                         }
                     }.awaitAll()
                 println(posts)
